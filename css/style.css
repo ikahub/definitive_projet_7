@@ -1,0 +1,31 @@
+.header_flex, .search-section{
+    text-align: center;
+}
+
+#recipes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#allRecipes{
+    display: flex;
+}
+
+.div-recipe{
+    background-color: red;
+    width: 31.1%;
+    margin: 1rem;
+    padding: 1rem;
+    word-wrap: break-word;
+}
+
+.ingredients{
+    display: flex;
+    flex-direction: column;
+}
+
+#div-filter{
+    display: flex;
+    margin: 2rem;}
