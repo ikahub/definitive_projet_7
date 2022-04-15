@@ -29,3 +29,27 @@
 #div-filter{
     display: flex;
     margin: 2rem;}
+
+.ustensils-input{
+    height:2rem
+}
+.ingredients-input{
+    height:2rem
+}
+.appliance-input{
+    height:2rem
+}
+
+.ingredient-container{
+    display: none;
+}
+.appliance-container{
+    display: none;
+}
+.ustensils-container{
+    display: none;
+}
+
+.show-search-ingredients{
+    display: block;
+}

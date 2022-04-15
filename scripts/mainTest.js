@@ -78,7 +78,7 @@ class Main {
 
     filterUl.classList.add(`${filterName}-liste`)
 
-  
+    if(this.searchField.nodeValue = ""){
       this.recipesEl[filterName].forEach(filterValue => {
         //console.log(filterValue)
         const filterLi = document.createElement('li')
@@ -90,8 +90,23 @@ class Main {
         filterUl.appendChild(filterLi)
         
       })
-   
-      
+    }else{
+      this.filterV.forEach(filterValue => {
+
+        console.log(filterValue)
+        const filterLi = document.createElement('li')
+  
+        filterLi.classList.add(`${filterName}-item`)
+  
+        filterLi.innerHTML = filterValue
+  
+        filterUl.appendChild(filterLi)
+        
+      })
+    }
+
+    
+    
     elSearchDiv.appendChild(filterUl)
   }
 

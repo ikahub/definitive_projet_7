@@ -50,10 +50,10 @@ class Main {
 
 
     //console.log(this.recipesEl.appliance)
-
     Object.keys(this.recipesEl).forEach(filter => this.internalIngredientsSearch(filter))
 
     Object.keys(this.recipesEl).forEach(filter => this.displayFilterTags(filter))
+
 
     this.ingredientsFilter()
     this.applianceFilter()
@@ -65,34 +65,22 @@ class Main {
 
     const filterTitle = document.querySelector(`.${filterName}FilterTitle`)
 
-    const elSearchDiv = document.querySelector(`.${filterName}-container`)
 
-    elSearchDiv.innerHTML = ""
 
     filterTitle.addEventListener('click', () => {
-      elSearchDiv.style.display = elSearchDiv.style.display === 'none'? 'block' : 'none'
+      this.elSearchDiv.style.display = this.elSearchDiv.style.display === 'none'? 'block' : 'none'
 
     })
 
-    const filterUl = document.createElement('ul')
 
-    filterUl.classList.add(`${filterName}-liste`)
 
-  
-      this.recipesEl[filterName].forEach(filterValue => {
-        //console.log(filterValue)
-        const filterLi = document.createElement('li')
-  
-        filterLi.classList.add(`${filterName}-item`)
-  
-        filterLi.innerHTML = filterValue
-  
-        filterUl.appendChild(filterLi)
-        
-      })
-   
+    this.searchField = document.getElementById(`${filterName}_search`).addEventListener('keyup', this.changeText, filterName)
+
+
+
+    
+    
       
-    elSearchDiv.appendChild(filterUl)
   }
 
   /*filterSearchSetup(){
@@ -211,28 +199,92 @@ class Main {
   }
 
   internalIngredientsSearch(filterName){
-    this.searchField = document.getElementById(`${filterName}_search`)
 
-    
+    const searchField = document.getElementById(`ingredients_search`)
 
-    const searchFiltered = this.searchField.addEventListener('keyup', (e) => {
-  
-      console.log(filterName)
+    this.quelqueChose = searchField.addEventListener('keydown', (e) => {
+      this.filterValueArray = []
+
+      //console.log(filterName)
 
       const searchString = e.target.value.toLowerCase()
 
-      console.log(searchString)
+      //console.log(searchString)
+
+      
 
       this.matchedSearch = this.recipesEl[filterName].filter(testedCondition => testedCondition.toLowerCase().includes(searchString))
 
-      console.log(this.matchedSearch)
+      //console.log(this.matchedSearch)
 
+      
+      
+
+
+      this.laderniereconst = this.matchedSearch.forEach(filterValue => {
+        this.filterValueArray.push(filterValue)
+        //console.log(this.filterValueArray)
+      })
+  })
+
+  console.log(this.quelqueChose)
+
+  return this.quelqueChose
+  }
+
+  changeText(event){
+
+    
+
+    this.filterUl = document.createElement('ul')
+
+    this.filterUl.classList.add(`ingredient-liste`)
+
+    this.elSearchDiv = document.querySelector(`.ingredients-container`)
+
+
+    if(event.target.id === `ingredients_search`){
+      
+      this.filterValueArray.forEach(filterValue => {
+        console.log(filterValueArray)
+        const filterLi = document.createElement('li')
+  
+        filterLi.classList.add(`ingredients-item`)
+  
+        filterLi.innerHTML = filterValue
+  
+        this.filterUl.appendChild(filterLi)
+      })
+
+      console.log(this.filterValueArray)
+      
+      this.elSearchDiv.appendChild(this.filterUl)
+
+    }else {
+      
+
+    }
+
+    
+
+    this.recipesEl[filterName].forEach(filterValue => {
+      //console.log(filterValue)
+      const filterLi = document.createElement('li')
+
+      filterLi.classList.add(`ingredients-item`)
+
+      filterLi.innerHTML = filterValue
+
+      this.filterUl.appendChild(filterLi)
+      
     })
     
-    return this.matchedSearch
+    this.elSearchDiv.appendChild(this.filterUl)
+
+    }
 
   }
-}
+
 
 const main = new Main()
 

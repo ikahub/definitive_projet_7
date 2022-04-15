@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/083bd83ce3.js" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="css/style.css">
 
@@ -22,6 +24,44 @@
         <label for="recipe-search">Rechercher une recette</label>
         <input type="text" id="recipe-search"placeholder="search" aria-label="Rechercher une recette"> 
         <div id="div-filter">
+            <div class="">
+
+                <h1 class="ingredientsFilterTitle">Ingrédients</h1>
+                
+                <div class="ingredients-search-div">
+                    <label for="ingredients_search"></label>
+                    <input type="text" id="ingredients_search">
+                    <div class="selected-ingredients-buttons">
+                    </div>
+                    <div class="ingredients-container">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="">
+
+                <h1 class="applianceFilterTitle">Appareils</h1>
+                <div class="appliance-search-div">
+                    <label for="appliance_search"></label>
+                    <input type="text" id="appliance_search">
+                    <div class="selected-appliance-buttons">
+                    </div>
+                    <div class="appliance-container">
+                    </div>
+                </div>
+                
+            </div>
+            <div>
+                <h1 class="ustensilsFilterTitle">Ustensiles</h1>
+                <div class="ustensils-search-div">
+                    <label for="ustensils_search"></label>
+                    <input type="text" id="ustensils_search">
+                    <div class="selected-ustensils-buttons">
+                    </div>
+                    <div class="ustensils-container">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section id="recipes">
@@ -29,7 +69,7 @@
     </section>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script type="module" src="data/search.js"></script> -->
-    <!-- <script type="module" src="scripts/recipe.js"></script> -->
+    <script type="module" src="scripts/recipe.js"></script>
     <script type="module" src="scripts/search.js"></script>
     <script type="module" src="scripts/main.js"></script>
 </body>

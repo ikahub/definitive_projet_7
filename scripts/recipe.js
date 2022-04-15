@@ -1,4 +1,7 @@
-import recipeTmpl from "../templates/recipeTmpl.js"
+import recipeTmpl from "../templates/recipeTmpl.js";
+//import recipes from '../data/recipes.js'
+//import {displayAllFilters} from './main.js';
+
 class Recipe {
 
   constructor(data = {name: "", servings: null, ingredients: [], time: null, description: "", appliance: "", ustensils: ""}){
@@ -43,35 +46,101 @@ class Recipe {
   checkMatchingFilters(filterSearch, filterIngredients, filterAppliance, filterUstensils){
     const matchingSearch = this.checkMatchingSearch(filterSearch)
     //console.log(matchingSearch)
-    const matchingUstensils = this.checkMatchingUstensils(filterUstensils)
-    //console.log(matchingUstensils)
-    const matchingAppliance = this.checkMatchingAppliance(filterAppliance)
-    //console.log(matchingAppliance)
     const matchingIngredients = this.checkMatchingIngredients(filterIngredients)
     //console.log(matchingIngredients)
+    const matchingAppliance = this.checkMatchingAppliance(filterAppliance)
+    //console.log(matchingAppliance)
+    const matchingUstensils = this.checkMatchingUstensils(filterUstensils)
+    //console.log(matchingUstensils)
+
 
     return matchingAppliance && matchingIngredients && matchingSearch && matchingUstensils
 
   }
 
   checkMatchingIngredients(filterIngredients){
-    let isMatchingIngredients = false
+
+    let isMatchingIngredients = true
 
     if(filterIngredients && filterIngredients.length){
       for (let i = 0; i < filterIngredients.length; i++) {
+        let toto = false
         const filterIngredient = filterIngredients[i].toLowerCase();
         //console.log(filterIngredient)
+        
         for (let j = 0; j < this.ingredients.length; j++) {
           const ingredient = this.ingredients[j].ingredient.toLowerCase();
-          isMatchingIngredients = filterIngredient === ingredient || isMatchingIngredients
+          /*if(isMatchingIngredients = filterIngredient){
+            isMatchingIngredients = ingredient
+          }else{
+            isMatchingIngredients = isMatchingIngredients
+          }*/
+          toto = filterIngredient === ingredient || toto
         }
+        isMatchingIngredients = toto && isMatchingIngredients
       }
-    }else{
-      isMatchingIngredients = true
     }
-
+//console.log(isMatchingIngredients)
     return isMatchingIngredients 
   }
+  checkMatchingAppliance(filterAppliance){
+
+    let isMatchingAppliance = true
+    //console.log(filterAppliance)
+
+    if(filterAppliance && filterAppliance.length){
+
+      // faire un includes this.appliance.toLowerCase().includes(filterappliance)
+      
+      for (let i = 0; i < filterAppliance.length; i++) {
+
+        //const unObjetRandom = {}
+        const filterAppliances = filterAppliance[i].toLowerCase()
+
+        
+        //unObjetRandom.push(...filterAppliances)
+        const matchingAppliance = this.appliance.toLowerCase().includes(filterAppliances)
+
+        isMatchingAppliance = matchingAppliance
+      }
+    }
+  return isMatchingAppliance
+  }
+
+  checkMatchingUstensils(filterUstensils){
+
+    let isMatchingUstensils = true
+
+    //console.log(filterUstensils)
+    //console.log(filterUstensils.length)
+
+    if(filterUstensils && filterUstensils.length){
+      console.log("toto")
+      for (let i = 0; i < filterUstensils.length; i++) {
+
+        console.log("titi")
+        
+        let toto = false
+
+        const mappedUstensils = filterUstensils[i].toLowerCase();
+
+        for (let j = 0; j < this.ustensils.length; j++) {
+
+          const ustensils = this.ustensils[j].toLowerCase();
+
+          console.log(mappedUstensils)
+          console.log(ustensils)
+
+          toto = mappedUstensils === ustensils || toto
+
+        }
+
+        isMatchingUstensils = toto && isMatchingUstensils
+      }
+    }
+
+    return isMatchingUstensils
+}
 
   checkMatchingSearch(filterSearch){
 
@@ -105,39 +174,7 @@ class Recipe {
            isMatchingUstensils
   }
 
-  checkMatchingAppliance(filterAppliance){
 
-    let isMatchingAppliance = true
-
-    if(filterAppliance && filterAppliance.length){
-      for (let i = 0; i < filterAppliance.length; i++) {
-        const filterAppliance = filterAppliance[i];
-        for (let j = 0; j < this.appliance.length; j++) {
-          const appliance = this.appliance[j];
-          isMatchingAppliance = filterAppliance === appliance && isMatchingAppliance
-        }
-      }
-    }
-
-    return isMatchingAppliance
-  }
-
-  checkMatchingUstensils(filterUstensils){
-
-  let isMatchingUstensils = true
-
-    if(filterUstensils && filterUstensils.length){
-      for (let i = 0; i < filterUstensils.length; i++) {
-        const filterUstensils = filterUstensils[i];
-        for (let j = 0; j < this.ustensils.length; j++) {
-          const ustensils = this.ustensils[j];
-          isMatchingUstensils = filterUstensils === ustensils && isMatchingUstensils
-        }
-      }
-    }
-
-    return isMatchingUstensils
-  }
 }
 
 export default Recipe
