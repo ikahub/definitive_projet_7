@@ -53,3 +53,38 @@
 .show-search-ingredients{
     display: block;
 }
+
+.ingredients-global-div{
+
+left: 11.18%;
+right: 40.59%;
+top: 33.33%;
+bottom: 34.78%;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 22px;
+/* identical to box height */
+
+text-align: center;
+
+color: #ffffff;
+
+background-color: #3282F7;
+
+}
+
+li{
+    list-style: none;
+}
+
+#recipes{
+position: absolute;
+width: 380px;
+height: 300px;
+left: 100px;
+top: 392px;
+font-size: 12px;
+}

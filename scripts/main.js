@@ -14,7 +14,8 @@ class Main {
     this.filteredRecipes = [...this.recipes]
 
     //console.log(this.filteredRecipes)
-    
+    //this.matchedSearch = []
+    this.searchStringX = ''
     this.searchString = ''
     this.selectedAppliance = []
     this.selectedUstensil = []
@@ -23,15 +24,20 @@ class Main {
     //console.log(this.recipesEl)
 
     this.displayAllFilters()
+
     this.searchInputKeydown()
     
 
 
     this.displayRecipes()
+    //Object.keys(this.recipesEl).forEach(filter => this.internalIngredientsSearch(filter))
 
+    this.internalIngredientsSearch
   }
 
   displayAllFilters(){
+
+
     this.recipesEl = this.filteredRecipes.reduce((acc, current) => {
       acc.ingredients.push(...current.ingredients.filter(ing => !acc.ingredients.includes(ing.ingredient)).map(ing => ing.ingredient))
 
@@ -51,13 +57,14 @@ class Main {
 
     //console.log(this.recipesEl.appliance)
 
-    Object.keys(this.recipesEl).forEach(filter => this.internalIngredientsSearch(filter))
-
     Object.keys(this.recipesEl).forEach(filter => this.displayFilterTags(filter))
+    Object.keys(this.recipesEl).forEach(filter => this.internalIngredientsSearch(filter))
 
     this.ingredientsFilter()
     this.applianceFilter()
     this.ustensilsFilter()
+
+
 
   }
 
@@ -74,23 +81,62 @@ class Main {
 
     })
 
+    
     const filterUl = document.createElement('ul')
 
     filterUl.classList.add(`${filterName}-liste`)
+    if(this.searchStringX === ""){
+      this.matchedSearch = this.recipesEl[filterName].filter(testedCondition => testedCondition.toLowerCase().includes(this.searchStringX))
+      this.matchedSearch.forEach(eachFiltered => {
+        console.log(eachFiltered)
+        //this.okFilter = eachFiltered === this.recipesEl[filterName]
+        this.condiFilterLi = document.createElement('li')
+        this.condiFilterLi.classList.add(`${filterName}-item`)
+        this.condiFilterLi.innerText = eachFiltered
+  
+        filterUl.appendChild(this.condiFilterLi)
+    })
+    }else{
+      this.matchedSearch = this.recipesEl[filterName].filter(testedCondition => testedCondition.toLowerCase().includes(this.searchStringX))
 
+      this.matchedSearch.forEach(eachFiltered => {
+        console.log(eachFiltered)
+        //this.okFilter = eachFiltered === this.recipesEl[filterName]
+        this.condiFilterLi = document.createElement('li')
+        this.condiFilterLi.classList.add(`${filterName}-item`)
+        this.condiFilterLi.innerText = eachFiltered
   
-      this.recipesEl[filterName].forEach(filterValue => {
-        //console.log(filterValue)
-        const filterLi = document.createElement('li')
-  
-        filterLi.classList.add(`${filterName}-item`)
-  
-        filterLi.innerHTML = filterValue
-  
-        filterUl.appendChild(filterLi)
+        filterUl.appendChild(this.condiFilterLi)
+    })
+  }
+
+
+
+      
         
-      })
-   
+    
+
+
+      //this.stringIsMatching = this.internalIngredientsSearch(filterName)
+
+
+        
+        /*this.matchedSearch.forEach(filterValue => {
+          //console.log(filterValue)
+          this.filterLi = document.createElement('li')
+    
+          this.filterLi.classList.add(`${filterName}-item`)
+    
+          this.filterLi.innerHTML = filterValue
+    
+          filterUl.appendChild(this.filterLi)
+          
+        })*/
+     
+        //console.log("toto")
+        //console.log(this.matchedSearch)
+        
+    
       
     elSearchDiv.appendChild(filterUl)
   }
@@ -213,24 +259,21 @@ class Main {
   internalIngredientsSearch(filterName){
     this.searchField = document.getElementById(`${filterName}_search`)
 
-    
-
-    const searchFiltered = this.searchField.addEventListener('keyup', (e) => {
+    this.searchField.addEventListener('keydown', (e) => {
   
-      console.log(filterName)
+      
 
-      const searchString = e.target.value.toLowerCase()
+      //console.log(filterName)
 
-      console.log(searchString)
+      this.searchStringX = e.target.value.toLowerCase()
 
-      this.matchedSearch = this.recipesEl[filterName].filter(testedCondition => testedCondition.toLowerCase().includes(searchString))
+      //console.log(searchString)
 
+      this.displayAllFilters()
       console.log(this.matchedSearch)
 
     })
-    
-    return this.matchedSearch
-
+    return this.searchStringX
   }
 }
 
