@@ -1,12 +1,13 @@
 export default `
-  <div class="div-recipe">
-      <h4 class="name"></h4>
-      <p class="ingredients-div">
-      </p>
-      <p class="servings"></p>
-      <p class="time"></p>
-      <p class="description"></p>
-      <p class="appliance"></p>
-      <p class="ustensils"></p>
+  <div class="setup-flex">
+  <img src="" alt="" class="empty-img">
+    <div class="setup-flex-three">
+        <h4 class="name"></h4>
+        <span class="time"></span>
+    </div>
+    <div class="setup-flex-two">
+        <p class="ingredients-div"></p>
+        <p class="description"></p>
+    </div>  
   </div>
 `
